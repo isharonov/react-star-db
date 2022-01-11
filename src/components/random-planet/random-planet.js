@@ -17,7 +17,8 @@ export default class RandomPlanet extends Component {
 
   componentDidMount() {
     this.updatePlanet();
-    this.interval = setInterval(this.updatePlanet, 10000);
+    // Disable auto update, because server returns error 429 (Too Many Requests)
+    //this.interval = setInterval(this.updatePlanet, 10000);
   }
 
   onPlanetLoaded = (planet) => {

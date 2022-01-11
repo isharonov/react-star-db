@@ -11,6 +11,10 @@
     border-radius: 10px;
 }
 
+.person-details .list-group {
+    margin-bottom: 8px;
+}
+
 .person-details .list-group-item {
     padding: .25rem;
 }

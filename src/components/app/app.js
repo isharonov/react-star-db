@@ -3,11 +3,10 @@ import React, {Component} from "react";
 import Header from "../header";
 
 import './app.css';
-import ItemDetails from "../item-details";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundry from "../error-boundry";
 import Row from "../Row";
-import {Record} from "../item-details/item-details";
+import ItemList from "../item-list";
 
 export default class App extends Component {
 
@@ -26,37 +25,9 @@ export default class App extends Component {
   render() {
 
     const {
-      getPerson,
-      getStarship,
-      getPersonImage,
-      getStarshipImage
+      getAllPeople,
+      getAllStarships
     } = this.swapiService;
-
-    const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}>
-
-        <Record field="gender" label="Gender" />
-        <Record field="birthYear" label="Birth Year" />
-        <Record field="eyeColor" label="Eye Color" />
-
-      </ItemDetails>
-    );
-
-    const starshipDetails = (
-      <ItemDetails
-        itemId={5}
-        getData={getStarship}
-        getImageUrl={getStarshipImage}>
-
-        <Record field="model" label="Model" />
-        <Record field="length" label="Length" />
-        <Record field="costInCredits" label="Cost" />
-
-      </ItemDetails>
-    );
 
     return (
       <ErrorBoundry>
@@ -64,8 +35,22 @@ export default class App extends Component {
           <Header />
 
           <Row
-            left={personDetails}
-            right={starshipDetails} />
+            left={
+              <ItemList
+                getData={getAllPeople}
+                onItemSelected={() => {}}>
+                { ({name}) => <span>{name}</span> }
+              </ItemList>
+            }
+            right={
+              <ItemList
+                getData={getAllStarships}
+                onItemSelected={() => {}}>
+                { ({name}) => <span>{name}</span> }
+              </ItemList>
+            }
+          />
+
         </div>
       </ErrorBoundry>
     );

@@ -7,6 +7,7 @@ import ItemDetails from "../item-details";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundry from "../error-boundry";
 import Row from "../Row";
+import {Record} from "../item-details/item-details";
 
 export default class App extends Component {
 
@@ -35,16 +36,22 @@ export default class App extends Component {
       <ItemDetails
         itemId={11}
         getData={getPerson}
-        getImageUrl={getPersonImage}
-      />
+        getImageUrl={getPersonImage}>
+
+        <Record field="gender" label="Gender" />
+        <Record field="birthYear" label="Birth Year" />
+        <Record field="eyeColor" label="Eye Color" />
+
+      </ItemDetails>
     );
 
     const starshipDetails = (
       <ItemDetails
         itemId={5}
         getData={getStarship}
-        getImageUrl={getStarshipImage}
-      />
+        getImageUrl={getStarshipImage}>
+
+      </ItemDetails>
     );
 
     return (

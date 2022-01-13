@@ -7,6 +7,10 @@ import ErrorIndicator from "../error-indicator";
 
 export default class RandomPlanet extends Component {
 
+  static defaultProps = {
+    updateInterval: 20000
+  }
+
   swapiService = new SwapiService();
 
   state = {
@@ -16,9 +20,9 @@ export default class RandomPlanet extends Component {
   };
 
   componentDidMount() {
+    const { updateInterval } = this.props;
     this.updatePlanet();
-    // Disable auto update, because server returns error 429 (Too Many Requests)
-    //this.interval = setInterval(this.updatePlanet, 10000);
+    this.interval = setInterval(this.updatePlanet, updateInterval);
   }
 
   componentWillUnmount() {

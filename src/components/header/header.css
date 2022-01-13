@@ -1,6 +1,8 @@
 .header {
     margin-top: .5rem;
     padding-left: 10px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header ul li {
@@ -18,10 +20,23 @@
     text-decoration: none;
 }
 
+.header h3,
+.header ul {
+    margin: 0;
+}
+
+.header ul {
+    padding: 0 10px;
+}
+
 .header h3 a {
     color: white;
 }
 
 .header h3 a:hover {
     color: #00bc8c;
+}
+
+.header .btn {
+    height: 2.2rem;
 }

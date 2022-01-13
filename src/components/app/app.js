@@ -13,13 +13,24 @@ import {
   PlanetList,
   StarshipList
 } from "../sw-components";
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 export default class App extends Component {
 
-  swapiService = new SwapiService();
-
   state = {
-    showRandomPlanet: true
+    showRandomPlanet: true,
+    swapiService: new DummySwapiService()
+  };
+
+  onServiceChange = () => {
+    this.setState(({ swapiService }) => {
+      const Service = swapiService instanceof SwapiService ?
+                        DummySwapiService : SwapiService;
+
+      return {
+        swapiService: new Service()
+      };
+    });
   };
 
   toggleRandomPlanet = () => {
@@ -32,9 +43,9 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <SwapiServiceProvider value={this.swapiService} >
+        <SwapiServiceProvider value={this.state.swapiService} >
           <div className="stardb-app">
-            <Header />
+            <Header onServiceChange={this.onServiceChange} />
 
             <PersonDetails itemId={11} />
 

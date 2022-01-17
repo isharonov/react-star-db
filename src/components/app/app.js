@@ -8,7 +8,8 @@ import ErrorBoundry from "../error-boundry";
 import DummySwapiService from "../../services/dummy-swapi-service";
 import RandomPlanet from "../random-planet";
 import {PeoplePage, PlanetsPage, StarshipsPage} from "../pages";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, useParams} from "react-router-dom";
+import {StarshipDetails} from "../sw-components";
 
 export default class App extends Component {
 
@@ -41,6 +42,9 @@ export default class App extends Component {
                 <Route path="/people" element={<PeoplePage />} />
                 <Route path="/planets" element={<PlanetsPage />} />
                 <Route path="/starships" element={<StarshipsPage />} />
+                <Route path="/starships">
+                  <Route path=":id" element={<StarshipWrapper />} />
+                </Route>
               </Routes>
 
             </div>
@@ -49,4 +53,9 @@ export default class App extends Component {
       </ErrorBoundry>
     );
   };
+};
+
+const StarshipWrapper = () => {
+  const { id } = useParams();
+  return (<StarshipDetails itemId={id} />);
 };

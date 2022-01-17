@@ -37,6 +37,7 @@ export default class App extends Component {
               <RandomPlanet />
 
               <Routes>
+                <Route path="/" element={<h2>Welcome to Star DB</h2>} />
                 <Route path="/people" element={<PeoplePage />} />
                 <Route path="/planets" element={<PlanetsPage />} />
                 <Route path="/starships" element={<StarshipsPage />} />

@@ -67,6 +67,7 @@ export default class App extends Component {
                     onLogin={this.onLogin}/>}
                 />
                 <Route path="/secret" element={<SecretPage isLoggedIn={isLoggedIn} />} />
+                <Route path="*" element={<PageNotFound />} />
               </Routes>
 
             </div>
@@ -81,3 +82,7 @@ const StarshipWrapper = () => {
   const { id } = useParams();
   return (<StarshipDetails itemId={id} />);
 };
+
+const PageNotFound = () => {
+  return <h2>404 - Page Not Found</h2>;
+}
